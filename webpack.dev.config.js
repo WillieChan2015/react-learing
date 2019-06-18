@@ -30,7 +30,11 @@ module.exports = {
         test: /\.js|jsx$/,
         use: ['babel-loader?cacheDirectory=true'],
         include: path.join(__dirname, 'src'),
-      }
+      },
+      {
+        test: /\.css|scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
     ]
   },
 
@@ -42,6 +46,9 @@ module.exports = {
     port: 8080,
     historyApiFallback: true,
   },
+
+  // 增强调试
+  devtool: 'inline-source-map',
 
   // 开启热更新
   // 目前在 package.json 中配置了 --hot (CLI方式)，具有同样效果
