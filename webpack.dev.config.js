@@ -35,6 +35,15 @@ module.exports = {
         test: /\.css|scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,    // 小于等于8K的图片会被转成base64编码
+          }
+        }]
+      },
     ]
   },
 
