@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // 入口
@@ -11,8 +12,8 @@ module.exports = {
   // webpack.dev.config.js
   output: {
     path: path.join(__dirname, "./dist"),
-    filename: "bundle.js",
-    chunkFilename: '[name].js',
+    filename: "bundle.[hash].js",
+    chunkFilename: '[name].[chunkhash].js',
   },
 
   resolve: {
@@ -60,9 +61,13 @@ module.exports = {
   // 增强调试
   devtool: 'inline-source-map',
 
-  // 开启热更新
-  // 目前在 package.json 中配置了 --hot (CLI方式)，具有同样效果
-  // plugins: [
-  //   new webpack.HotModuleReplacementPlugin()
-  // ],
+  plugins: [
+    // 开启热更新
+    // 目前在 package.json 中配置了 --hot (CLI方式)，具有同样效果
+    // new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, 'src/index.html'),
+    }),
+  ],
 };
