@@ -4,10 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // 入口
-  entry: [
-    'react-hot-loader/patch',
-    path.join(__dirname, "src/main.jsx")
-  ],
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      path.join(__dirname, "src/main.jsx")
+    ],
+    vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
+  },
+  // entry: [
+  //   'react-hot-loader/patch',
+  //   path.join(__dirname, "src/main.jsx")
+  // ],
 
   // webpack.dev.config.js
   output: {
@@ -68,6 +75,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'src/index.html'),
+    }),
+
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
     }),
   ],
 };
