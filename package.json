@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-build": "webpack --config webpack.dev.config.js",
-    "dev": "webpack-dev-server --config webpack.dev.config.js --color --hot"
+    "dev": "webpack-dev-server --config webpack.dev.config.js --color --hot",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "Willie",
   "license": "ISC",
@@ -24,6 +25,7 @@
     "react-hot-loader": "^4.5.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^2.0.0",
     "webpack": "3",
     "webpack-dev-server": "2"
