@@ -1,15 +1,18 @@
 const webpack = require("webpack");
+const merge = require('webpack-merge');
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+const commonConfig = require("./webpack.common.config.js");
+
+const devConfig  = {
   // 入口
   entry: {
     app: [
       'react-hot-loader/patch',
       path.join(__dirname, "src/App.jsx")
     ],
-    vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
+    // vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
   },
   // entry: [
   //   'react-hot-loader/patch',
@@ -18,9 +21,10 @@ module.exports = {
 
   // webpack.dev.config.js
   output: {
-    path: path.join(__dirname, "./dist"),
+    // path: path.join(__dirname, "./dist"),
+    /*这里本来应该是[chunkhash]的，但是由于[chunkhash]和react-hot-loader不兼容。只能妥协*/
     filename: "[name].[hash].js",
-    chunkFilename: '[name].[chunkhash].js',
+    // chunkFilename: '[name].[chunkhash].js',
   },
 
   resolve: {
@@ -35,24 +39,24 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        test: /\.js|jsx$/,
-        use: ['babel-loader?cacheDirectory=true'],
-        include: path.join(__dirname, 'src'),
-      },
+      // {
+      //   test: /\.js|jsx$/,
+      //   use: ['babel-loader?cacheDirectory=true'],
+      //   include: path.join(__dirname, 'src'),
+      // },
       {
         test: /\.css|scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8192,    // 小于等于8K的图片会被转成base64编码
-          }
-        }]
-      },
+      // {
+      //   test: /\.(png|jpg|gif)$/,
+      //   use: [{
+      //     loader: 'url-loader',
+      //     options: {
+      //       limit: 8192,    // 小于等于8K的图片会被转成base64编码
+      //     }
+      //   }]
+      // },
     ]
   },
 
@@ -68,17 +72,29 @@ module.exports = {
   // 增强调试
   devtool: 'inline-source-map',
 
-  plugins: [
-    // 开启热更新
-    // 目前在 package.json 中配置了 --hot (CLI方式)，具有同样效果
-    // new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.join(__dirname, 'src/index.html'),
-    }),
+  // plugins: [
+  //   // 开启热更新
+  //   // 目前在 package.json 中配置了 --hot (CLI方式)，具有同样效果
+  //   // new webpack.HotModuleReplacementPlugin(),
 
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    }),
-  ],
+  //   new HtmlWebpackPlugin({
+  //     filename: 'index.html',
+  //     template: path.join(__dirname, 'src/index.html'),
+  //   }),
+
+  //   new webpack.optimize.CommonsChunkPlugin({
+  //     name: 'vendor'
+  //   }),
+  // ],
 };
+
+
+module.exports = merge({
+  customizeArray(a, b, key) {
+    // entry.app不合并，全替换
+    if (key === 'entry.app') {
+      return b;
+    }
+    return undefined;
+  }
+})(commonConfig, devConfig);
