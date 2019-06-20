@@ -7,19 +7,19 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      path.join(__dirname, "src/main.jsx")
+      path.join(__dirname, "src/App.jsx")
     ],
     vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
   },
   // entry: [
   //   'react-hot-loader/patch',
-  //   path.join(__dirname, "src/main.jsx")
+  //   path.join(__dirname, "src/App.jsx")
   // ],
 
   // webpack.dev.config.js
   output: {
     path: path.join(__dirname, "./dist"),
-    filename: "bundle.[hash].js",
+    filename: "[name].[hash].js",
     chunkFilename: '[name].[chunkhash].js',
   },
 
