@@ -22,17 +22,22 @@ function getUserInfoFail() {
 }
 
 export function getUserInfo() {
-    return function(dispatch) {
-        dispatch(getUserInfoRequest());
+    // return function(dispatch) {
+    //     dispatch(getUserInfoRequest());
 
-        return fetch("http://localhost:8080/api/user.json")
-            .then(res => res.json())
-            .then(data => {
-                dispatch(getUserInfoSuccess(data));
-            })
-            .catch(e => {
-                console.log(e);
-                dispatch(getUserInfoFail());
-            });
+    //     return fetch("http://localhost:8080/api/user.json")
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             dispatch(getUserInfoSuccess(data));
+    //         })
+    //         .catch(e => {
+    //             console.log(e);
+    //             dispatch(getUserInfoFail());
+    //         });
+    // }
+
+    return {
+        types: [GET_USER_INFO_REQUEST, GET_USER_INFO_SUCCESS, GET_USER_INFO_FAIL],
+        promise: client => client.get('/api/user.json'),
     }
 }
