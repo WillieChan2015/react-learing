@@ -9,6 +9,7 @@ const devConfig  = {
   // 入口
   entry: {
     app: [
+      "babel-polyfill",
       'react-hot-loader/patch',
       path.join(__dirname, "src/App.jsx")
     ],
@@ -46,7 +47,7 @@ const devConfig  = {
       // },
       {
         test: /\.css|scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader', "postcss-loader"]
       },
       // {
       //   test: /\.(png|jpg|gif)$/,
