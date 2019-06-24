@@ -6,7 +6,7 @@ class UserInfo extends Component {
   render() {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
     return (
       <div>

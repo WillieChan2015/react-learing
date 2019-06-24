@@ -5,4 +5,6 @@ let Random = Mock.Random;
 Mock.mock('/api/user', {
     'name': '@cname',
     'intro': '@word(20)'
+    // 'name': 'Jack',
+    // 'intro': 'I am a student'
 });
