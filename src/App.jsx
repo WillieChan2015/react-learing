@@ -6,6 +6,10 @@ import store from './redux/store.js';
 
 import getRouter from './router/router';
 
+if (MOCK) {
+    require('../mock/mock.js');
+}
+
 // 初始化
 renderWithHotReload(getRouter());
 

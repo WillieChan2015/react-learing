@@ -73,7 +73,7 @@ const devConfig  = {
   // 增强调试
   devtool: 'inline-source-map',
 
-  // plugins: [
+  plugins: [
   //   // 开启热更新
   //   // 目前在 package.json 中配置了 --hot (CLI方式)，具有同样效果
   //   // new webpack.HotModuleReplacementPlugin(),
@@ -85,8 +85,11 @@ const devConfig  = {
 
   //   new webpack.optimize.CommonsChunkPlugin({
   //     name: 'vendor'
-  //   }),
-  // ],
+    // }),
+    new webpack.DefinePlugin({
+      MOCK: true
+    }),
+  ],
 };
 
 

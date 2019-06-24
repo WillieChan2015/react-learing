@@ -103,8 +103,9 @@ const prodConfig = {
     // 指定环境
     new webpack.DefinePlugin({
         'process.env': {
-            'NODE_ENV': JSON.stringify('production')
-        }
+          'NODE_ENV': JSON.stringify('production')
+        },
+        MOCK: false,
     }),
 
     // 压缩代码

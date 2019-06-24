@@ -6,6 +6,8 @@ class UserInfo extends Component {
   render() {
     const { userInfo, isLoading, errorMsg } = this.props.userInfo;
 
+    console.log(userInfo);
+
     return (
       <div>
         {
@@ -13,8 +15,8 @@ class UserInfo extends Component {
             errorMsg ? errorMsg : (
               <div>
                 <p>用户信息：</p>
-                <p>用户名：{userInfo.name}</p>
-                <p>介绍：{userInfo.intro}</p>
+                <p>用户名：{userInfo && userInfo.name}</p>
+                <p>介绍：{userInfo && userInfo.intro}</p>
               </div>
             )
           )
