@@ -68,6 +68,9 @@ const devConfig  = {
     host: "0.0.0.0",
     port: 8080,
     historyApiFallback: true,
+    proxy: {
+      "/api/*": "http://localhost:8090/$1"
+    },
   },
 
   // 增强调试
@@ -86,9 +89,6 @@ const devConfig  = {
   //   new webpack.optimize.CommonsChunkPlugin({
   //     name: 'vendor'
     // }),
-    new webpack.DefinePlugin({
-      MOCK: true
-    }),
   ],
 };
 

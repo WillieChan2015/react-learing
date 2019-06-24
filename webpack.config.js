@@ -105,7 +105,6 @@ const prodConfig = {
         'process.env': {
           'NODE_ENV': JSON.stringify('production')
         },
-        MOCK: false,
     }),
 
     // 压缩代码
